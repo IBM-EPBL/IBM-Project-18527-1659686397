@@ -5,7 +5,7 @@ import pickle
 import requests
 
 # NOTE: you must manually set API_KEY below using information retrieved from your IBM Cloud account.
-API_KEY = "hmIOFhnjuvRGrJaKtFnyvNKEQTINuL4eRrcnbp6K7c8R"
+API_KEY = "Q92Y8v43ZM8xvzwRyRC9g5P1NKFv-AnXGtnDVSR4Fq6B"
 token_response = requests.post('https://iam.cloud.ibm.com/identity/token', data={"apikey":API_KEY, "grant_type": 'urn:ibm:params:oauth:grant-type:apikey'})
 mltoken = token_response.json()["access_token"]
 
@@ -73,7 +73,7 @@ def predict():
     
     payload_scoring = {"input_data": [{"fields": ['gender','married','depend','education','self_emp','applicant_income','co_income','loan_amount','loan_term','credit_history','property_area'], "values": sf}]}
 
-    response_scoring = requests.post('https://us-south.ml.cloud.ibm.com/ml/v4/deployments/5108313c-f101-4c06-8f87-151aa0d1c3ff/predictions?version=2022-10-26', json=payload_scoring,headers={'Authorization': 'Bearer ' + mltoken})
+    response_scoring = requests.post('https://us-south.ml.cloud.ibm.com/ml/v4/deployments/c3f7936d-1254-477c-abca-b97dcf530bd5/predictions?version=2022-11-15', json=payload_scoring,headers={'Authorization': 'Bearer ' + mltoken})
     print("response_scoring")
     prediction = response_scoring.json()
     predict = prediction['predictions'][0]['values'][0][0]
